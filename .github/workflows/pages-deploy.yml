@@ -4,6 +4,7 @@ on:
     branches:
       - main
       - master
+      - feat/add-author-tab
     paths-ignore:
       - .gitignore
       - README.md
