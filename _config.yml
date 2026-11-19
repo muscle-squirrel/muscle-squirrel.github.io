@@ -192,6 +192,41 @@ defaults:
       # DO NOT modify the following parameter unless you are confident enough
       # to update the code of all other post links in this project.
       permalink: /posts/:title/
+
+  # ── 멤버별 글 폴더 ────────────────────────────────────────
+  #  _posts/<이름표>/ 에 쓴 글은 작성자가 자동으로 지정되고,
+  #  주소가 /posts/<이름표>/<파일 이름>/ 이 되어 서로 겹치지 않습니다.
+  #  새 멤버: 아래 한 줄을 복사하고 _data/authors.yml 에도 추가하세요.
+  - {
+      scope: { path: "_posts/hyeonsu", type: posts },
+      values: { author: hyeonsu, permalink: "/posts/hyeonsu/:title/" },
+    }
+  - {
+      scope: { path: "_posts/hyeonjong", type: posts },
+      values: { author: hyeonjong, permalink: "/posts/hyeonjong/:title/" },
+    }
+  - {
+      scope: { path: "_posts/jeongbin", type: posts },
+      values: { author: jeongbin, permalink: "/posts/jeongbin/:title/" },
+    }
+  - {
+      scope: { path: "_posts/serim", type: posts },
+      values: { author: serim, permalink: "/posts/serim/:title/" },
+    }
+  - {
+      scope: { path: "_posts/jaeseo", type: posts },
+      values: { author: jaeseo, permalink: "/posts/jaeseo/:title/" },
+    }
+  - {
+      scope: { path: "_posts/seohyun", type: posts },
+      values: { author: seohyun, permalink: "/posts/seohyun/:title/" },
+    }
+  - {
+      scope: { path: "_posts/yewon", type: posts },
+      values: { author: yewon, permalink: "/posts/yewon/:title/" },
+    }
+  # ──────────────────────────────────────────────────────────
+
   - scope:
       path: _drafts
     values:
