@@ -1,7 +1,7 @@
 ---
 # the default layout is 'page'
 icon: fas fa-info-circle
-order: 4
+order: 5
 ---
 
 > **muscle-squirrel**은 4주 동안 Linux와 Docker를 공부하고,

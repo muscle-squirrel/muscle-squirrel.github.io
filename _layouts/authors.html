@@ -1,0 +1,55 @@
+---
+layout: page
+# 멤버 탭: 멤버별 글 수와 최근 글을 보여 줍니다.
+---
+
+{% include lang.html %}
+
+{% assign post_measure = site.data.locales[lang].categories.post_measure %}
+{% assign recent_limit = 5 %}
+
+{% for member in site.data.authors %}
+  {% assign member_id = member | first %}
+  {% assign info = member | last %}
+  {% assign member_page = site.pages | where: 'member_id', member_id | first %}
+  {% assign member_posts = member_page.posts %}
+  {% assign posts_size = member_posts | size %}
+
+  <div class="card categories">
+    <div class="card-header d-flex justify-content-between hide-border-bottom">
+      <span class="ms-2">
+        <i class="fas fa-user fa-fw"></i>
+        <a href="{{ member_page.url | relative_url }}" class="mx-2">{{ info.name | default: member_id }}</a>
+        <span class="text-muted small font-weight-light">
+          {{ posts_size }}
+          {{ post_measure.plural | default: post_measure }}
+        </span>
+      </span>
+
+      {% if info.url %}
+        <a href="{{ info.url }}" class="category-trigger hide-border-bottom" aria-label="{{ info.name }} GitHub" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-github fa-fw"></i>
+        </a>
+      {% endif %}
+    </div>
+
+    {% if posts_size > 0 %}
+      <ul class="list-group">
+        {% for post in member_posts limit: recent_limit %}
+          <li class="list-group-item d-flex justify-content-between">
+            <span>
+              <i class="far fa-file-alt fa-fw"></i>
+              <a href="{{ post.url | relative_url }}" class="mx-2">{{ post.title }}</a>
+            </span>
+            {% include datetime.html date=post.date class='text-muted small text-nowrap' lang=lang %}
+          </li>
+        {% endfor %}
+        {% if posts_size > recent_limit %}
+          <li class="list-group-item">
+            <a href="{{ member_page.url | relative_url }}" class="ms-4 small">전체 {{ posts_size }}개 보기 →</a>
+          </li>
+        {% endif %}
+      </ul>
+    {% endif %}
+  </div>
+{% endfor %}
