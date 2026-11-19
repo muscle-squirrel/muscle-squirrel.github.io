@@ -1,0 +1,12 @@
+{%- comment -%}
+  글의 작성자 이름을 쉼표로 이어서 출력합니다.
+  사용법: {% include post-author-names.html post=post %}
+  author / authors 에 적힌 이름표를 _data/authors.yml 의 name 으로 바꿉니다.
+{%- endcomment -%}
+{%- assign _ids = include.post.authors | default: include.post.author -%}
+{%- if _ids -%}
+  {%- for _id in _ids -%}
+    {{- site.data.authors[_id].name | default: _id -}}
+    {%- unless forloop.last %}, {% endunless -%}
+  {%- endfor -%}
+{%- endif -%}

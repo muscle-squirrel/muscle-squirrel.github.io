@@ -1,0 +1,28 @@
+---
+layout: page
+# 카테고리 페이지 (테마 v7.6.0 category 레이아웃 + 작성자 표시)
+---
+
+{% include lang.html %}
+
+<div id="page-category">
+  <h1 class="ps-lg-2">
+    <i class="far fa-folder-open fa-fw text-muted"></i>
+    {{ page.title }}
+    <span class="lead text-muted ps-2">{{ page.posts | size }}</span>
+  </h1>
+
+  <ul class="content ps-0">
+    {% for post in page.posts %}
+      {% capture author_names %}{% include post-author-names.html post=post %}{% endcapture %}
+      <li class="d-flex justify-content-between px-md-3">
+        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        {% if author_names != '' %}
+          <span class="text-muted text-nowrap ms-1">({{ author_names }})</span>
+        {% endif %}
+        <span class="dash flex-grow-1"></span>
+        {% include datetime.html date=post.date class='text-muted small text-nowrap' lang=lang %}
+      </li>
+    {% endfor %}
+  </ul>
+</div>
